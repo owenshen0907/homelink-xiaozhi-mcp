@@ -1,0 +1,15 @@
+node_modules/
+.env
+.env.*
+!.env.example
+.local/
+data/
+logs/
+*.log
+*.tmp
+session.json
+voice.json
+settings.json
+registration-cache.json
+runtime-lock.json
+.DS_Store

@@ -1,0 +1,36 @@
+{
+  "name": "homelink-xiaozhi-mcp",
+  "version": "0.1.0",
+  "description": "HomeLink → Alexa → XiaoZhi MCP bridge, extracted from a tested ESP32 voice-control setup.",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "start": "node bin/cli.mjs start",
+    "login": "node bin/cli.mjs login",
+    "configure": "node bin/cli.mjs configure",
+    "devices": "node bin/cli.mjs devices",
+    "test": "node --test test/*.test.mjs",
+    "check": "node scripts/check.mjs",
+    "format:check": "prettier --check src bin test scripts package.json .prettierrc.json .github/workflows/ci.yml",
+    "audit:dependencies": "node scripts/audit.mjs"
+  },
+  "dependencies": {
+    "alexa-remote2": "8.1.1",
+    "ws": "8.22.0"
+  },
+  "overrides": {
+    "alexa-cookie2": "5.0.6",
+    "cookie": "0.7.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/owenshen0907/homelink-xiaozhi-mcp.git"
+  },
+  "devDependencies": {
+    "prettier": "3.9.9"
+  }
+}

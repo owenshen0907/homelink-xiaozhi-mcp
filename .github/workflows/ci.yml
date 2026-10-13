@@ -13,12 +13,15 @@ jobs:
     if: github.event_name != 'pull_request' || (github.actor == github.repository_owner && github.event.pull_request.user.login == github.repository_owner && github.event.pull_request.head.repo.full_name == github.repository)
     runs-on: [self-hosted, Linux, X64, homelink-xiaozhi-mcp-ci]
     timeout-minutes: 15
-    env:
-      npm_config_cache: ${{ runner.tool_cache }}/npm-cache/homelink-xiaozhi-mcp
     strategy:
       matrix:
         node: [22, 24]
     steps:
+      - name: Configure runner-local caches
+        shell: bash
+        run: |
+          set -euo pipefail
+          printf 'npm_config_cache=%s/npm-cache/homelink-xiaozhi-mcp\n' "${RUNNER_TOOL_CACHE:?}" >> "$GITHUB_ENV"
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false

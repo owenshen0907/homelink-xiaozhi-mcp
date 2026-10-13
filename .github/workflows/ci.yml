@@ -13,6 +13,8 @@ jobs:
     if: github.event_name != 'pull_request' || (github.actor == github.repository_owner && github.event.pull_request.user.login == github.repository_owner && github.event.pull_request.head.repo.full_name == github.repository)
     runs-on: [self-hosted, Linux, X64, homelink-xiaozhi-mcp-ci]
     timeout-minutes: 15
+    env:
+      npm_config_cache: ${{ runner.tool_cache }}/npm-cache/homelink-xiaozhi-mcp
     strategy:
       matrix:
         node: [22, 24]
@@ -23,7 +25,7 @@ jobs:
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: ${{ matrix.node }}
-          cache: npm
+          package-manager-cache: false
       - run: npm ci --ignore-scripts
       - run: npm run check
       - run: npm run format:check
